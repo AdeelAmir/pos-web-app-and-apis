@@ -1,0 +1,1379 @@
+{
+	"info": {
+		"_postman_id": "4b4d0944-8e66-4861-9cf9-e3f024cf49dd",
+		"name": "Pos App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26137698"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"// pm.environment.set(\"user_id\", jsonData.user.id);\r",
+									"pm.environment.set(\"access_token\", jsonData.access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "{{email}}",
+									"description": "Email Address (required)",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"description": "Password (required)",
+									"type": "text"
+								},
+								{
+									"key": "device_token",
+									"value": "123",
+									"description": "Device Token (optional)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "2",
+									"description": "User Id (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/view-profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"view-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_name",
+									"value": "adeel002",
+									"description": "User Name (optional)",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "Adeel",
+									"description": "First Name (optional)",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Amir",
+									"description": "Last Name (optional)",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "{{phone}}",
+									"description": "Phone Number (optional)",
+									"type": "text"
+								},
+								{
+									"key": "profile_picture",
+									"description": "Profile Picture (optional)",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "gender",
+									"value": "Male",
+									"description": "Gender (Male/Female/Other) (optional)",
+									"type": "text"
+								},
+								{
+									"key": "birth_date",
+									"value": "2002-06-25",
+									"description": "Date of Birth (optional - if role is Talent Seeker)",
+									"type": "text"
+								},
+								{
+									"key": "business_name",
+									"value": "Adeel",
+									"description": "Business Name (optional - if role is Talent Seeker)",
+									"type": "text"
+								},
+								{
+									"key": "business_type",
+									"value": "Individual",
+									"description": "Business Type (Individual/Entity) (optional - if role is Talent Seeker)",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Millat Chowk, Faisalabad",
+									"description": "Address (optional)",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "1",
+									"description": "Country (optional) (multiple)",
+									"type": "text"
+								},
+								{
+									"key": "industry",
+									"value": "1",
+									"description": "Industry (optional) (multiple)",
+									"type": "text"
+								},
+								{
+									"key": "language",
+									"value": "1,2,3,4",
+									"description": "Language (optional) (multiple)",
+									"type": "text"
+								},
+								{
+									"key": "specialization",
+									"value": "1",
+									"description": "Specialization (optional) (multiple)",
+									"type": "text"
+								},
+								{
+									"key": "yt_link",
+									"value": "https://youtube.com",
+									"description": "Youtube Link (optional)",
+									"type": "text"
+								},
+								{
+									"key": "fb_link",
+									"value": "https://facebook.com",
+									"description": "Facebook Link (optional)",
+									"type": "text"
+								},
+								{
+									"key": "tiktok_link",
+									"value": "https://tiktok.com",
+									"description": "Tiktok Link (optional)",
+									"type": "text"
+								},
+								{
+									"key": "insta_link",
+									"value": "https://instagram.com",
+									"description": "Instagram Link (optional)",
+									"type": "text"
+								},
+								{
+									"key": "bio",
+									"value": "Hello",
+									"description": "Bio (optional)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/edit-profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"edit-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "{{email}}",
+									"description": "Email address (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/forgot-password",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"description": "Password (required)",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "{{password}}",
+									"description": "Confirmation Password (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/changePassword",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"changePassword"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Predefined",
+			"item": [
+				{
+					"name": "Get All Cities",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/cities/all",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cities",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "date",
+									"value": "18-10-2024",
+									"description": "Date (optional)",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "Stock",
+									"description": "Type (Stock, Bonus) - (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/product/all",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"product",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Goods",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/goods/all",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"goods",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dashboard",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "start_date",
+									"value": "01-09-2024",
+									"description": "Start Date (required)",
+									"type": "text"
+								},
+								{
+									"key": "end_date",
+									"value": "30-09-2024",
+									"description": "End Date (required)",
+									"type": "text"
+								},
+								{
+									"key": "income_chart_type",
+									"value": "Weekly",
+									"description": "Income Chart Type (required) (Daily, Weekly, Monthly)",
+									"type": "text"
+								},
+								{
+									"key": "expense_chart_type",
+									"value": "Monthly",
+									"description": "Expense Chart Type (required) (Daily, Weekly, Monthly)",
+									"type": "text"
+								},
+								{
+									"key": "top_selling_chart_type",
+									"value": "Monthly",
+									"description": "Top Selling Chart Type (required) (Daily, Weekly, Monthly)",
+									"type": "text"
+								},
+								{
+									"key": "products_in_stock_chart_type",
+									"value": "Monthly",
+									"description": "Products In Stock Chart Type (required) (Daily, Weekly, Monthly)",
+									"type": "text"
+								},
+								{
+									"key": "top_sellers_table_type",
+									"value": "Monthly",
+									"description": "Top Sellers Table Type (required) (Daily, Weekly, Monthly)",
+									"type": "text"
+								},
+								{
+									"key": "damage_replace_chart_type",
+									"value": "Monthly",
+									"description": "Damage/Replace Chart Type (required) (Daily, Weekly, Monthly)",
+									"type": "text"
+								},
+								{
+									"key": "store_loan_table_type",
+									"value": "Monthly",
+									"description": "Store Loan TableType (required) (Daily, Weekly, Monthly)",
+									"type": "text"
+								},
+								{
+									"key": "seller_loan_table_type",
+									"value": "Monthly",
+									"description": "Seller Loan Table Type (required) (Daily, Weekly, Monthly)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/dashboard",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dashboard"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shop",
+			"item": [
+				{
+					"name": "Get All Shops",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "seller_id",
+									"value": "",
+									"description": "Seller ID (optional)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/shop/all",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"shop",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Shop",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "address",
+									"value": "Millat Chowk, Gulistan Colony, Faisalabad, Pakistan",
+									"description": "Address (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/shop/search",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"shop",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Shop",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Lorem",
+									"description": "Shop Name (required)",
+									"type": "text"
+								},
+								{
+									"key": "city_id",
+									"value": "{{city_id}}",
+									"description": "City ID (required)",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "Lahore",
+									"description": "Location (required)",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Lahore",
+									"description": "Address (required)",
+									"type": "text"
+								},
+								{
+									"key": "micro_district",
+									"value": "",
+									"description": "Micro District (required)",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "",
+									"description": "Latitude (required)",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "",
+									"description": "Longitude (optional)",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Description",
+									"description": "Description (optional)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/shop/add",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"shop",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Add Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "date",
+									"value": "16-10-2024",
+									"description": "Date (required)",
+									"type": "text"
+								},
+								{
+									"key": "shop_id",
+									"value": "1",
+									"description": "Shop ID (required)",
+									"type": "text"
+								},
+								{
+									"key": "products",
+									"value": "[\n{\"id\":17,\"quantity\":5,\"price\":2}\n]",
+									"description": "Products (required) (Json String)",
+									"type": "text"
+								},
+								{
+									"key": "payment_type",
+									"value": "Cash",
+									"description": "Payment Type (required) (Cash/Credit)",
+									"type": "text"
+								},
+								{
+									"key": "price_type",
+									"value": "Retail",
+									"description": "Price Type (required) (Retail/Wholesale/Extra)",
+									"type": "text"
+								},
+								{
+									"key": "sale_type",
+									"value": "Stock",
+									"description": "Sale Type (required) (Stock/Bonus)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/order/add",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"order",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Report",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "from",
+									"value": "24-09-2024",
+									"description": "Order From Date (required)",
+									"type": "text"
+								},
+								{
+									"key": "to",
+									"value": "25-10-2024",
+									"description": "Order To Date (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/order/report",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"order",
+								"report"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "order_id",
+									"value": "{{order_id}}",
+									"description": "Order ID (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/order/details",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"order",
+								"details"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Loan",
+			"item": [
+				{
+					"name": "Loan Report",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "from",
+									"value": "05-09-2024",
+									"description": "Order From Date (required)",
+									"type": "text"
+								},
+								{
+									"key": "to",
+									"value": "20-10-2024",
+									"description": "Order To Date (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/loan/report",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"loan",
+								"report"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Partial Loan Payment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "loan_id",
+									"value": "{{order_id}}",
+									"description": "Loan ID (required)",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "20",
+									"description": "Amount",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/loan/partial-payment",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"loan",
+								"partial-payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Loan Collect Money",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "loan_id",
+									"value": "{{order_id}}",
+									"description": "Loan ID (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/loan/collect-money",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"loan",
+								"collect-money"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sale",
+			"item": [
+				{
+					"name": "Sale Report",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "from",
+									"value": "14-10-2024",
+									"description": "Sale From Date (required)",
+									"type": "text"
+								},
+								{
+									"key": "to",
+									"value": "15-10-2024",
+									"description": "Sale To Date (required)",
+									"type": "text"
+								},
+								{
+									"key": "payment_type",
+									"value": "Cash",
+									"description": "Payment Type (Cash,Credit) - (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/sale/report",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sale",
+								"report"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sale Report Detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "sale_report_id",
+									"value": "1",
+									"description": "Sale Report Id (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/sale/report/detail",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sale",
+								"report",
+								"detail"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Seller Targets",
+			"item": [
+				{
+					"name": "Get Seller Targets",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/seller/targets",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"seller",
+								"targets"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Demands",
+			"item": [
+				{
+					"name": "Get All Demands",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/demand/all",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"demand",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Demand",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "date",
+									"value": "19-10-2024",
+									"description": "Date (required)",
+									"type": "text"
+								},
+								{
+									"key": "products",
+									"value": "[\n{\"id\":17,\"quantity\":5},\n{\"id\":18,\"quantity\":5}\n]",
+									"description": "Products (required) (Json String)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/demand/add",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"demand",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Demand",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "demand_id",
+									"value": "{{demand_id}}",
+									"description": "Demand ID (required)",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "19-10-2024",
+									"description": "Date (required)",
+									"type": "text"
+								},
+								{
+									"key": "products",
+									"value": "[\n{\"id\":17,\"quantity\":5},\n{\"id\":18,\"quantity\":5}\n]",
+									"description": "Products (required) (Json String)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/demand/edit",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"demand",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Demand",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "demand_id",
+									"value": "{{demand_id}}",
+									"description": "Demand ID (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/demand/delete",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"demand",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
