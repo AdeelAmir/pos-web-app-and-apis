@@ -27,7 +27,7 @@ class SiteHelper
         $Settings['PageTitle'] = 'Pos App';
         $Settings['Limit'] = 6;
         $Settings['Pagination'] = 15;
-        $Settings['GoogleAPIKey'] = base64_encode('AIzaSyBYy47owS11_JcssLpUjdALlzeECHFeDOY');
+        $Settings['GoogleAPIKey'] = "";
         return $Settings;
     }
 
